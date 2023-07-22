@@ -1,0 +1,17 @@
+version: '3'
+services:
+  java-srv:
+    build: java-srv
+    ports:
+      - "80:8080"
+    depends_on:
+      - db
+    links:
+      - "db:db"
+
+  db:
+    build: db
+    ports:
+      - 1433
+    healthcheck:
+      test: "exit 0"
